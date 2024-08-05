@@ -7,7 +7,7 @@ const mentors = [
   { id: 4, name: 'David Brown', field: 'Science' },
 ];
 
-const Mentorship = () => {
+const ConnectionMentors = () => {
   const [selectedMentor, setSelectedMentor] = useState(null);
 
   return (
@@ -32,4 +32,4 @@ const Mentorship = () => {
   );
 };
 
-export default Mentorship;
+export default ConnectionMentors;

@@ -14,8 +14,8 @@ const Dashboard = () => {
           <h2>Skill Explorer</h2>
           <p>Discover and develop skills that align with your interests and the evolving job market.</p>
         </Link>
-        <Link to="/connections-mentorships" className="dashboard-item">
-          <h2>Mentorship Connections</h2>
+        <Link to="/connections-mentorship" className="dashboard-item">
+          <h2>Connections + Mentorship</h2>
           <p>Connect with mentors from various fields to gain insights and guidance.</p>
         </Link>
         <Link to="/underrated-paths" className="dashboard-item">

@@ -5,8 +5,8 @@ import Welcome from './components/Welcome';
 import Dashboard from './components/Dashboard';
 import SelfReflection from './components/SelfReflection';
 import SkillExplorer from './components/SkillExplorer';
-import Mentorship from './components/ConnectionMentors';
-import UnconventionalPaths from './components/UnderratedPaths';
+import ConnectionMentors from './components/ConnectionMentors';
+import UnderratedPaths from './components/UnderratedPaths';
 import './App.css';
 
 function App() {
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

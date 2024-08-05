@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SelfReflection = () => {
-  const [entry, setEntry] = useState('');
   const [entries, setEntries] = useState([]);
+  const [newEntry, setNewEntry] = useState('');
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const storedEntries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+    setEntries(storedEntries);
+  }, []);
+
+  const addEntry = (e) => {
     e.preventDefault();
-    if (entry.trim()) {
-      setEntries([...entries, { id: Date.now(), text: entry }]);
-      setEntry('');
-    }
+    if (!newEntry.trim()) return;
+    const updatedEntries = [...entries, { id: Date.now(), text: newEntry, date: new Date().toLocaleString() }];
+    setEntries(updatedEntries);
+    localStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
+    setNewEntry('');
+  };
+
+  const deleteEntry = (id) => {
+    const updatedEntries = entries.filter(entry => entry.id !== id);
+    setEntries(updatedEntries);
+    localStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
   };
 
   return (
     <div className="self-reflection">
       <h2>Self-Reflection Journal</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={addEntry}>
         <textarea
-          value={entry}
-          onChange={(e) => setEntry(e.target.value)}
-          placeholder="Reflect on your day, goals, or challenges..."
-          rows="5"
+          value={newEntry}
+          onChange={(e) => setNewEntry(e.target.value)}
+          placeholder="What's on your mind?"
+          rows="4"
         />
-        <button type="submit">Save Entry</button>
+        <button type="submit">Add Entry</button>
       </form>
       <div className="journal-entries">
-        <h3>Previous Entries</h3>
         {entries.map((entry) => (
           <div key={entry.id} className="journal-entry">
             <p>{entry.text}</p>
-            <small>{new Date(entry.id).toLocaleString()}</small>
+            <small>{entry.date}</small>
+            <button onClick={() => deleteEntry(entry.id)}>Delete</button>
           </div>
         ))}
       </div>
